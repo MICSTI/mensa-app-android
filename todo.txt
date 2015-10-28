@@ -1,0 +1,19 @@
+DATA
+- load meal schedule
+- parse meal schedule to json
+- store json in shared preferences
+- check if new meal schedule is available should be done automatically every Monday
+
+MAIN ACTIVITY
+- get meal json from shared preferences
+- display week schedule
+- highlight favourite meals
+
+FAVOURITES ACTIVITY
+- list with all favourite meals
+- option to add new favourite meal
+- press favourite meal long --> delete dialog
+
+NOTIFICATIONS
+- check if a favourite meal is served on this day (e.g. at 11:00, if yes --> notification)
+- on click of notification --> open app

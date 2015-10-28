@@ -1,4 +1,4 @@
-package itm.fhj.at.mensaapp;
+package itm.fhj.at.mensaapp.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

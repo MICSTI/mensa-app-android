@@ -1,0 +1,53 @@
+{
+	"timestamp": "26.10.2015T08:00:00",
+	"mealSchedule": [
+		{
+			"date": "26.10.2015",
+			"info": "Feiertag heute geschlossen"
+		},
+		{
+			"date": "27.10.2015",
+			"meals": [
+				{
+					"starter": "Klare Gemüsesuppe mit Backerbsen",
+					"main": "Marillenknödel mit Butterbrösel und Kompott",
+					"price": "4.30",
+					"currency": "euro"
+				},
+				{
+					"starter": "Klare Gemüsesuppe mit Backerbsen",
+					"main": "Hascheehörnchen dazu Salat vom Buffet",
+					"price": "4.90",
+					"currency": "euro"
+				},
+				{
+					"main": "Putenfilet gratiniert mit Speck und Käse",
+					"price": "5.90",
+					"currency": "euro"
+				}
+			]
+		},
+		{
+			"date": "28.10.2015",
+			"meals": [
+				{
+					"starter": "Nudelsuppe",
+					"main": "pikante Krautfleckerl dazu Blattsalat",
+					"price": "4.30",
+					"currency": "euro"
+				},
+				{
+					"starter": "Klare Gemüsesuppe",
+					"main": "Wiener Schnitzel vom Schwein mit Reis und Salat vom Buffet",
+					"price": "4.90",
+					"currency": "euro"
+				},
+				{
+					"main": "Paprikaschnitzel mit Salzkartoffeln und Salat vom Buffet",
+					"price": "5.90",
+					"currency": "euro"
+				}
+			]
+		}
+	]
+}

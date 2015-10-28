@@ -8,8 +8,9 @@ MAIN ACTIVITY
 - get meal json from shared preferences
 - display week schedule
 - highlight favourite meals
+- from settings menu link to favourite meals activity
 
-FAVOURITES ACTIVITY
+FAVOURITE MEALS ACTIVITY
 - list with all favourite meals
 - option to add new favourite meal
 - press favourite meal long --> delete dialog

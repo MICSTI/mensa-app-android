@@ -21,6 +21,7 @@ import java.net.URL;
 import itm.fhj.at.mensaapp.R;
 import itm.fhj.at.mensaapp.handler.AsyncLoader;
 import itm.fhj.at.mensaapp.handler.HTMLDataHandler;
+import itm.fhj.at.mensaapp.handler.LocationsHandler;
 import itm.fhj.at.mensaapp.interfaces.ICallback;
 
 

@@ -11,12 +11,15 @@ import org.jsoup.select.Elements;
 import java.net.URL;
 
 import itm.fhj.at.mensaapp.interfaces.ICallback;
+import itm.fhj.at.mensaapp.interfaces.IParseCallback;
 import itm.fhj.at.mensaapp.model.Location;
 
 /**
  * Created by rwachtler on 29.10.15.
  */
 public class HTMLDataHandler implements ICallback{
+
+    private IParseCallback parseCallback;
 
     /**
      * Starts an asynchronous request for given URL (String)
@@ -30,10 +33,13 @@ public class HTMLDataHandler implements ICallback{
 
 
     @Override
-    public Document parseHTMLString(String htmlString) {
+    public void parseHTMLString(String htmlString) {
         Document doc = Jsoup.parse(htmlString);
+        parseCallback.processLocationData(doc);
+    }
 
-        return doc;
+    public void setCallback(IParseCallback callback){
+        this.parseCallback = callback;
     }
 }
 

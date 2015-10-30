@@ -1,5 +1,6 @@
 package itm.fhj.at.mensaapp.activity;
 
+import android.content.Intent;
 import android.support.v4.text.ICUCompatApi23;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.jsoup.nodes.Document;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,26 +20,31 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import itm.fhj.at.mensaapp.R;
 import itm.fhj.at.mensaapp.handler.AsyncLoader;
 import itm.fhj.at.mensaapp.handler.HTMLDataHandler;
 import itm.fhj.at.mensaapp.handler.LocationsHandler;
 import itm.fhj.at.mensaapp.interfaces.ICallback;
+import itm.fhj.at.mensaapp.interfaces.IParseCallback;
+import itm.fhj.at.mensaapp.model.Location;
 
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity implements IParseCallback{
 
-
-
+    private ArrayList<Location> retrievedLocations = new ArrayList<Location>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Load locations
         HTMLDataHandler dataHandler = new HTMLDataHandler();
+        dataHandler.setCallback(this);
         dataHandler.loadHTMLStringFromURL("http://www.mensen.at");
+
 
     }
 
@@ -57,11 +65,24 @@ public class MainActivity extends ActionBarActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            Intent i = new Intent(MainActivity.this, LocationsList.class);
+            i.putExtra("LOCATIONS", this.retrievedLocations);
+            startActivity(i);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void processLocationData(Document locationData) {
+        LocationsHandler locationsHandler = new LocationsHandler(locationData);
+        this.retrievedLocations = locationsHandler.getLocations();
 
+        // Check here if location is selected (true = do nothing; false = show the list activity)
+        Intent i = new Intent(MainActivity.this, LocationsList.class);
+        i.putExtra("LOCATIONS", this.retrievedLocations);
+        startActivity(i);
+    }
 }

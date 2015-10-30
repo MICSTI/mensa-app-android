@@ -5,6 +5,8 @@ import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 
+import org.jsoup.nodes.Document;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,8 +15,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import itm.fhj.at.mensaapp.interfaces.ICallback;
+import itm.fhj.at.mensaapp.model.Location;
 
 /**
  * Created by rwachtler on 29.10.15.
@@ -62,7 +66,14 @@ public class AsyncLoader extends AsyncTask<String, Void, String>{
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        callback.handleHTMLString(s);
+        Document doc = callback.parseHTMLString(s);
+        LocationsHandler locationsHandler = new LocationsHandler(doc);
+
+        // Get Mensa locations
+        ArrayList<Location> mensaLocations = locationsHandler.getLocations();
+        /*
+         * Populate the table-view with locations here
+         */
 
     }
 

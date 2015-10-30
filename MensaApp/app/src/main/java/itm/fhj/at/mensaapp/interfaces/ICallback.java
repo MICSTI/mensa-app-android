@@ -12,5 +12,5 @@ public interface ICallback {
      * @param htmlString - HTML String retrieved from a URL
      * @return Document object (JSoup) for further processing
      */
-    public Document parseHTMLString(String htmlString);
+    public void parseHTMLString(String htmlString);
 }

@@ -2,10 +2,12 @@ package itm.fhj.at.mensaapp.model;
 
 import android.renderscript.Int2;
 
+import java.io.Serializable;
+
 /**
  * Created by rwachtler on 29.10.15.
  */
-public class Location {
+public class Location implements Serializable{
 
     private int id = 0;
     private String name = "";
@@ -32,5 +34,10 @@ public class Location {
      */
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

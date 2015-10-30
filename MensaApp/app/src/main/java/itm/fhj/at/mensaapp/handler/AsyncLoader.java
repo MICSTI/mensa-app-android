@@ -1,5 +1,6 @@
 package itm.fhj.at.mensaapp.handler;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.Html;
 import android.text.Spanned;
@@ -17,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import itm.fhj.at.mensaapp.activity.LocationsList;
 import itm.fhj.at.mensaapp.interfaces.ICallback;
 import itm.fhj.at.mensaapp.model.Location;
 
@@ -66,14 +68,7 @@ public class AsyncLoader extends AsyncTask<String, Void, String>{
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        Document doc = callback.parseHTMLString(s);
-        LocationsHandler locationsHandler = new LocationsHandler(doc);
-
-        // Get Mensa locations
-        ArrayList<Location> mensaLocations = locationsHandler.getLocations();
-        /*
-         * Populate the table-view with locations here
-         */
+        callback.parseHTMLString(s);
 
     }
 

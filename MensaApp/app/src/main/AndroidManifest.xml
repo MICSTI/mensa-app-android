@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="itm.fhj.at.mensaapp" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -20,6 +22,10 @@
             android:name=".activity.FavouriteMeals"
             android:label="@string/title_activity_favourite_meals" >
         </activity>
+        <activity
+            android:name=".activity.LocationsList"
+            android:label="@string/title_activity_locations_list" >
+        </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

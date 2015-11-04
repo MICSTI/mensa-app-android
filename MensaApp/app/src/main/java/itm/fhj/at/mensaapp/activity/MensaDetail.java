@@ -96,6 +96,7 @@ public class MensaDetail extends Activity {
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(String.valueOf(mensaId), demoMealSchedule.toString());
+        editor.commit();
 
         String defaultString = "";
         String mealJson = preferences.getString(String.valueOf(mensaId), defaultString);

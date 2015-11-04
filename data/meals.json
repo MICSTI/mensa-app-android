@@ -1,5 +1,8 @@
 {
-	"timestamp": "26.10.2015T08:00:00",
+	"id": 50,
+	"name": "FH JOANNEUM Kapfenberg",
+	"timestamp": 12345678,
+	"datetime": "26.10.2015T08:00:00",
 	"mealSchedule": [
 		{
 			"date": "26.10.2015",

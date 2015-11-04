@@ -1,7 +1,8 @@
 package itm.fhj.at.mensaapp.activity;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.text.ICUCompatApi23;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -31,7 +32,7 @@ import itm.fhj.at.mensaapp.interfaces.IParseCallback;
 import itm.fhj.at.mensaapp.model.Location;
 
 
-public class MainActivity extends ActionBarActivity implements IParseCallback{
+public class MainActivity extends Activity implements IParseCallback{
 
     private ArrayList<Location> retrievedLocations = new ArrayList<Location>();
 
@@ -44,8 +45,6 @@ public class MainActivity extends ActionBarActivity implements IParseCallback{
         HTMLDataHandler dataHandler = new HTMLDataHandler();
         dataHandler.setCallback(this);
         dataHandler.loadHTMLStringFromURL("http://www.mensen.at");
-
-
     }
 
 

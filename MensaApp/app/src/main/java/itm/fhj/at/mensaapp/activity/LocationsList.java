@@ -1,6 +1,7 @@
 package itm.fhj.at.mensaapp.activity;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,10 +51,9 @@ public class LocationsList extends ListActivity {
         Location selectedLocation = (Location) getListAdapter().getItem(position);
 
         if(selectedLocation.getId() > 0){
-            /*
-                - Store location here
-                - Dismiss this view or load new activity
-             */
+            Intent i = new Intent(LocationsList.this, MensaDetail.class);
+            i.putExtra("MENSA_ID", selectedLocation.getId());
+            startActivity(i);
         } else{
             Toast toast = Toast.makeText(this, "Sie können keine Kategorie auswählen!", Toast.LENGTH_SHORT);
             toast.show();

@@ -1,7 +1,9 @@
 package itm.fhj.at.mensaapp.activity;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,8 +53,18 @@ public class LocationsList extends ListActivity {
         Location selectedLocation = (Location) getListAdapter().getItem(position);
 
         if(selectedLocation.getId() > 0){
+            int mensaId = selectedLocation.getId();
+
+            // store selected mensa in shared preferences
+            SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("selectedMensaId", mensaId);
+            editor.commit();
+
+            // start mensa detail activity
             Intent i = new Intent(LocationsList.this, MensaDetail.class);
-            i.putExtra("MENSA_ID", selectedLocation.getId());
+            i.putExtra("MENSA_ID", mensaId);
             startActivity(i);
         } else{
             Toast toast = Toast.makeText(this, "Sie können keine Kategorie auswählen!", Toast.LENGTH_SHORT);

@@ -79,7 +79,7 @@ public class MainActivity extends Activity implements IParseCallback{
         LocationsHandler locationsHandler = new LocationsHandler(locationData);
         this.retrievedLocations = locationsHandler.getLocations();
 
-        // Check here if location is selected (true = do nothing; false = show the list activity)
+        // TODO Check here if location is selected (true = do nothing; false = show the list activity)
         Intent i = new Intent(MainActivity.this, LocationsList.class);
         i.putExtra("LOCATIONS", this.retrievedLocations);
         startActivity(i);

@@ -1,6 +1,7 @@
 package itm.fhj.at.mensaapp.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by michael.stifter on 04.11.2015.
@@ -8,10 +9,11 @@ import java.util.ArrayList;
 public class MealSchedule {
     private Location location;
     private long timestamp;
-    private ArrayList<Meal> meals;
+
+    private HashMap<String, ArrayList<Meal>> calendar;
 
     public MealSchedule() {
-        this.meals = new ArrayList<Meal>();
+        this.calendar = new HashMap<>();
     }
 
     public Location getLocation() {
@@ -30,19 +32,33 @@ public class MealSchedule {
         this.timestamp = timestamp;
     }
 
-    public ArrayList<Meal> getMeals() {
-        return meals;
+    public HashMap<String, ArrayList<Meal>> getCalendar() {
+        return calendar;
     }
 
-    public void setMeals(ArrayList<Meal> meals) {
-        this.meals = meals;
+    public void addCalendarDay(String day) {
+        if (!dayExists(day)) {
+            addEmptyDay(day);
+        }
     }
 
-    /**
-     * Adds a new meal to the meals array.
-     * @param meal the meal to be added to the meals array
-     */
-    public void addMeal(Meal meal) {
-        this.meals.add(meal);
+    public void addMeal(String day, Meal meal) {
+        // make sure calendar day exists
+        addCalendarDay(day);
+
+        // add meal to this day
+        this.calendar.get(day).add(meal);
+    }
+
+    public ArrayList<Meal> getMeals(String day) {
+        return this.calendar.get(day);
+    }
+
+    private boolean dayExists(String day) {
+        return this.calendar.containsKey(day);
+    }
+
+    private void addEmptyDay(String day) {
+        this.calendar.put(day, new ArrayList<Meal>());
     }
 }

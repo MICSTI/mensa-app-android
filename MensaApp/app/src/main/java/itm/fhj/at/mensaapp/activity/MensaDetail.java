@@ -3,10 +3,9 @@ package itm.fhj.at.mensaapp.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -14,6 +13,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import itm.fhj.at.mensaapp.R;
+import itm.fhj.at.mensaapp.model.Location;
+import itm.fhj.at.mensaapp.model.Meal;
+import itm.fhj.at.mensaapp.model.MealSchedule;
 
 public class MensaDetail extends Activity {
 
@@ -22,6 +24,7 @@ public class MensaDetail extends Activity {
 
     private TextView txtMensaId;
     private TextView txtMensaName;
+    private ListView lstMealSchedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +33,9 @@ public class MensaDetail extends Activity {
         setContentView(R.layout.activity_mensa_detail);
 
         // references to view elements
-        txtMensaId = (TextView) findViewById(R.id.mensaId);
-        txtMensaName = (TextView) findViewById(R.id.mensaName);
+        txtMensaId = (TextView) findViewById(R.id.txt_mensa_id);
+        txtMensaName = (TextView) findViewById(R.id.txt_mensa_name);
+        lstMealSchedule = (ListView) findViewById(R.id.list_meal_schedule);
 
         // get mensa id from intent extra
         //mensaId = (int)getIntent().getSerializableExtra("MENSA_ID");
@@ -56,7 +60,6 @@ public class MensaDetail extends Activity {
 
             JSONObject day1 = new JSONObject();
             day1.put("date", "26.10.2015");
-            day1.put("info", "Feiertag, heute geschlossen");
 
             JSONObject day2 = new JSONObject();
             day2.put("date", "27.10.2015");
@@ -105,9 +108,12 @@ public class MensaDetail extends Activity {
 
         // display meal schedule
         try {
-            JSONObject mealSchedule = new JSONObject(mealJson);
+            JSONObject mealScheduleJson = new JSONObject(mealJson);
 
-            String name = mealSchedule.getString("name");
+            MealSchedule mealSchedule = parseMealScheduleJsonObject(mealScheduleJson);
+
+            // location name
+            String name = mealSchedule.getLocation().getName();
 
             txtMensaId.setText(String.valueOf(mensaId));
             txtMensaName.setText(name);
@@ -122,5 +128,53 @@ public class MensaDetail extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_mensa_detail, menu);
         return true;
+    }
+
+    private MealSchedule parseMealScheduleJsonObject(JSONObject mealScheduleJson) {
+        MealSchedule mealSchedule = new MealSchedule();
+
+        try {
+            // location
+            int id = mealScheduleJson.getInt("id");
+            String name = mealScheduleJson.getString("name");
+
+            Location location = new Location(id, name);
+            mealSchedule.setLocation(location);
+
+            // timestamp
+            mealSchedule.setTimestamp(mealScheduleJson.getLong("timestamp"));
+
+            // meal schedule array
+            JSONArray mealScheduleArray = mealScheduleJson.getJSONArray("mealSchedule");
+            int mealScheduleArrayLength = mealScheduleArray.length();
+
+            for (int i = 0; i < mealScheduleArrayLength; i++) {
+                JSONObject day = (JSONObject) mealScheduleArray.get(i);
+
+                String date = day.getString("date");
+                JSONArray meals = day.getJSONArray("meals");
+
+                if (meals != null) {
+                    int mealsLength = meals.length();
+
+                    for (int j = 0; j < mealsLength; j++) {
+                        JSONObject mealObject = (JSONObject) meals.get(j);
+
+                        String price = mealObject.getString("price");
+                        String description = mealObject.getString("description");
+                        String type = mealObject.getString("type");
+
+                        mealSchedule.addMeal(date, new Meal(price, description, type));
+                    }
+                } else {
+                    // add an empty day to the calendar
+                    mealSchedule.addCalendarDay(date);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return mealSchedule;
     }
 }

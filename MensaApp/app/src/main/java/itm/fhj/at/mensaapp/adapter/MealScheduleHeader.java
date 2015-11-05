@@ -12,8 +12,14 @@ public class MealScheduleHeader implements Item {
 
     private static int type = MealScheduleAdapter.TYPE_HEADER;
 
-    public MealScheduleHeader() {
+    private String text;
 
+    public MealScheduleHeader(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
     }
 
     @Override

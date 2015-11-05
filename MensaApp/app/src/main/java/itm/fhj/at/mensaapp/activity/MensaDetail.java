@@ -12,8 +12,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import itm.fhj.at.mensaapp.R;
+import itm.fhj.at.mensaapp.adapter.Item;
 import itm.fhj.at.mensaapp.adapter.MealScheduleAdapter;
+import itm.fhj.at.mensaapp.adapter.MealScheduleHeader;
+import itm.fhj.at.mensaapp.adapter.MealScheduleItem;
 import itm.fhj.at.mensaapp.model.Location;
 import itm.fhj.at.mensaapp.model.Meal;
 import itm.fhj.at.mensaapp.model.MealSchedule;
@@ -122,8 +130,33 @@ public class MensaDetail extends Activity {
             // mensa name
             txtMensaName.setText(mealSchedule.getLocation().getName());
 
-            // list view
+            // list view initialisation
+            List<Item> items = new ArrayList<Item>();
 
+            // get dates from calendar hash map
+            Set dateSet = mealSchedule.getCalendar().keySet();
+
+            Iterator iterator = dateSet.iterator();
+
+            // iterate over all days
+            while (iterator.hasNext()) {    
+                String day = (String)iterator.next();
+
+                // add header
+                MealScheduleHeader header = new MealScheduleHeader(day);
+                items.add(header);
+
+                // add meals
+                ArrayList<Meal> meals = mealSchedule.getCalendar().get(day);
+
+                for (Meal meal : meals) {
+                    MealScheduleItem item = new MealScheduleItem(meal);
+                    items.add(item);
+                }
+            }
+
+            mealScheduleAdapter = new MealScheduleAdapter(this, items);
+            lstMealSchedule.setAdapter(mealScheduleAdapter);
         } catch (JSONException e) {
             e.printStackTrace();
         }

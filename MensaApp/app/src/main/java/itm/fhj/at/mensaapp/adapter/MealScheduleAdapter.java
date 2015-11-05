@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 
 import itm.fhj.at.mensaapp.R;
@@ -15,34 +17,28 @@ import itm.fhj.at.mensaapp.R;
 /**
  * Created by michael.stifter on 04.11.2015.
  */
-public class MealScheduleAdapter extends BaseAdapter {
+public class MealScheduleAdapter extends ArrayAdapter<Item> {
 
-    private static final int TYPE_ITEM = 0;
-    private static final int TYPE_HEADER = 1;
+    public static final int TYPE_ITEM = 0;
+    public static final int TYPE_HEADER = 1;
 
-    private ArrayList<String> mData = new ArrayList<String>();
-    private TreeSet<Integer> sectionHeader = new TreeSet<Integer>();
+    private List<Item> mData;
 
     private LayoutInflater mInflater;
 
-    public MealScheduleAdapter(Context context) {
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public MealScheduleAdapter(Context context, List<Item> items) {
+        super(context, 0, items);
+        mInflater = LayoutInflater.from(context);
+        mData = items;
     }
 
-    public void addItem(final String item) {
+    public void addItem(Item item) {
         mData.add(item);
-        notifyDataSetChanged();
-    }
-
-    public void addSectionHeaderItem(final String item) {
-        mData.add(item);
-        sectionHeader.add(mData.size() - 1);
-        notifyDataSetChanged();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return sectionHeader.contains(position) ? TYPE_HEADER : TYPE_ITEM;
+        return getItem(position).getViewType();
     }
 
     @Override
@@ -56,7 +52,7 @@ public class MealScheduleAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Item getItem(int position) {
         return mData.get(position);
     }
 
@@ -76,12 +72,12 @@ public class MealScheduleAdapter extends BaseAdapter {
             switch (rowType) {
                 case TYPE_ITEM:
                     convertView = mInflater.inflate(R.layout.item_meal_schedule_day_meal, null);
-                    holder.textView = (TextView) convertView.findViewById(R.id.text_day);
+                    holder.view = getItem(position).getView(mInflater, convertView);
                     break;
 
                 case TYPE_HEADER:
                     convertView = mInflater.inflate(R.layout.item_meal_schedule_day_meal, null);
-                    holder.textView = (TextView) convertView.findViewById(R.id.text_meal);
+                    holder.view = getItem(position).getView(mInflater, convertView);
                     break;
             }
 
@@ -90,12 +86,10 @@ public class MealScheduleAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.textView.setText(mData.get(position));
-
         return convertView;
     }
 
     public static class ViewHolder {
-        public TextView textView;
+        public View view;
     }
 }

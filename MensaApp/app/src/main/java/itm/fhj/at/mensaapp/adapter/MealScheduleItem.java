@@ -2,6 +2,7 @@ package itm.fhj.at.mensaapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import itm.fhj.at.mensaapp.R;
 import itm.fhj.at.mensaapp.model.Meal;
@@ -37,6 +38,15 @@ public class MealScheduleItem implements Item {
         } else {
             view = convertView;
         }
+
+        TextView txtMealDescription = (TextView) view.findViewById(R.id.text_meal_description);
+        txtMealDescription.setText(meal.getDescription());
+
+        TextView txtMealPrice = (TextView) view.findViewById(R.id.text_meal_price);
+        txtMealPrice.setText(meal.getPrice());
+
+        TextView txtMealType = (TextView) view.findViewById(R.id.text_meal_type);
+        txtMealType.setText(meal.getType());
 
         return view;
     }

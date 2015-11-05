@@ -2,6 +2,9 @@ package itm.fhj.at.mensaapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import itm.fhj.at.mensaapp.R;
 
@@ -36,6 +39,9 @@ public class MealScheduleHeader implements Item {
         } else {
             view = convertView;
         }
+
+        TextView txtDay = (TextView) view.findViewById(R.id.text_day);
+        txtDay.setText(this.text);
 
         return view;
     }

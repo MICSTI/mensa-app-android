@@ -139,14 +139,14 @@ public class MensaDetail extends Activity {
             Iterator iterator = dateSet.iterator();
 
             // iterate over all days
-            while (iterator.hasNext()) {    
+            while (iterator.hasNext()) {
                 String day = (String)iterator.next();
 
                 // add header
                 MealScheduleHeader header = new MealScheduleHeader(day);
                 items.add(header);
 
-                // add meals
+                // add meals for this day
                 ArrayList<Meal> meals = mealSchedule.getCalendar().get(day);
 
                 for (Meal meal : meals) {

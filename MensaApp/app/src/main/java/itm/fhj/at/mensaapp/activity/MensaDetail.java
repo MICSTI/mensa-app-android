@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import itm.fhj.at.mensaapp.R;
+import itm.fhj.at.mensaapp.adapter.MealScheduleAdapter;
 import itm.fhj.at.mensaapp.model.Location;
 import itm.fhj.at.mensaapp.model.Meal;
 import itm.fhj.at.mensaapp.model.MealSchedule;
@@ -21,6 +22,9 @@ public class MensaDetail extends Activity {
 
     // mensa id
     private int mensaId;
+
+    // adapter
+    private MealScheduleAdapter mealScheduleAdapter;
 
     private TextView txtMensaId;
     private TextView txtMensaName;
@@ -112,11 +116,14 @@ public class MensaDetail extends Activity {
 
             MealSchedule mealSchedule = parseMealScheduleJsonObject(mealScheduleJson);
 
-            // location name
-            String name = mealSchedule.getLocation().getName();
-
+            // mensa id
             txtMensaId.setText(String.valueOf(mensaId));
-            txtMensaName.setText(name);
+
+            // mensa name
+            txtMensaName.setText(mealSchedule.getLocation().getName());
+
+            // list view
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

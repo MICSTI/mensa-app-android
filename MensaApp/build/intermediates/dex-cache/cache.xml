@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-733d5c2f327475ff2854fbafa194a9209cfc373e.jar" />
-    </item>
-    <item
-        jar="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/pre-dexed/debug/classes-fd66324b998a5f38c0f4a63ee7b17678b2eb704f.jar" />
-    </item>
-    <item
-        jar="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/src/main/java/itm/fhj/at/mensaapp/vendor/jsoup-1.8.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3a86e137575e4a45f5a9eec407f8135512e823a2">
-        <dex dex="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/pre-dexed/debug/jsoup-1.8.3-9147c8adc97d43d9b9745f837dbfc2d12978c55f.jar" />
-    </item>
-    <item
-        jar="/Users/rwachtler/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jar="C:\Users\michael.stifter\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-7dadf43717dfbc99c03c0802c60e5811a485a291.jar" />
+        <dex dex="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-283e9fd55a05d816c917971da90135df8f2ecf10.jar" />
     </item>
     <item
-        jar="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jar="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\src\main\java\itm\fhj\at\mensaapp\vendor\jsoup-1.8.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3a86e137575e4a45f5a9eec407f8135512e823a2">
+        <dex dex="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\pre-dexed\debug\jsoup-1.8.3-3e25b15c91b7c6eea0e8c552518a0eba77e3af8a.jar" />
+    </item>
+    <item
+        jar="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/rwachtler/Documents/FH/android/mensa-app-android/MensaApp/app/build/intermediates/pre-dexed/debug/classes-f9052979e55db5b3ee508cef2ac1dbb4eab33fdd.jar" />
+        <dex dex="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\pre-dexed\debug\classes-936e19d7ec90428330f1cbf7934096e70fa002b1.jar" />
+    </item>
+    <item
+        jar="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-360f391b49cd6ba2edcce3890fe41398829aa9a2.jar" />
+    </item>
+    <item
+        jar="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="C:\Users\michael.stifter\Documents\Uni\MoAppDev\mensa-app-android\MensaApp\app\build\intermediates\pre-dexed\debug\classes-11b909a48a3a64bf07df8cfea65024a6e3b921e4.jar" />
     </item>
 
 </items>

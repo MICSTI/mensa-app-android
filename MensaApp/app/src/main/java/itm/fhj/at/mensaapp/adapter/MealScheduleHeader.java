@@ -41,8 +41,16 @@ public class MealScheduleHeader implements Item {
         }
 
         TextView txtDay = (TextView) view.findViewById(R.id.text_day);
-        txtDay.setText(this.text);
+        txtDay.setText(text);
 
         return view;
+    }
+
+    @Override
+    public String toString() {
+        if (text != null)
+            return text;
+
+        return "null";
     }
 }

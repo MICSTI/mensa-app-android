@@ -53,4 +53,9 @@ public class Meal {
     public String getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return description + ", " + type + ", " + price;
+    }
 }

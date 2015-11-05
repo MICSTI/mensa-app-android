@@ -1,6 +1,7 @@
 package itm.fhj.at.mensaapp.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 import itm.fhj.at.mensaapp.R;
+import itm.fhj.at.mensaapp.activity.MensaDetail;
 
 /**
  * Created by michael.stifter on 04.11.2015.
@@ -73,11 +75,13 @@ public class MealScheduleAdapter extends ArrayAdapter<Item> {
                 case TYPE_ITEM:
                     convertView = mInflater.inflate(R.layout.item_meal_schedule_day_meal, null);
                     holder.view = getItem(position).getView(mInflater, convertView);
+
                     break;
 
                 case TYPE_HEADER:
-                    convertView = mInflater.inflate(R.layout.item_meal_schedule_day_meal, null);
+                    convertView = mInflater.inflate(R.layout.item_meal_schedule_day_head, null);
                     holder.view = getItem(position).getView(mInflater, convertView);
+
                     break;
             }
 

@@ -192,7 +192,7 @@ public class MensaDetail extends Activity {
                 JSONObject day = (JSONObject) mealScheduleArray.get(i);
 
                 String date = day.getString("date");
-                JSONArray meals = day.getJSONArray("meals");
+                JSONArray meals = day.optJSONArray("meals");
 
                 if (meals != null) {
                     int mealsLength = meals.length();

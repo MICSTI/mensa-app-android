@@ -50,4 +50,12 @@ public class MealScheduleItem implements Item {
 
         return view;
     }
+
+    @Override
+    public String toString() {
+        if (meal != null)
+            return meal.toString();
+
+        return "null";
+    }
 }

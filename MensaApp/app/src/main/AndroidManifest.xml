@@ -26,6 +26,10 @@
             android:name=".activity.MensaDetail"
             android:label="@string/title_activity_mensa_detail" >
         </activity>
+        <activity
+            android:name=".activity.FavouriteMeals"
+            android:label="@string/title_activity_favourite_meals" >
+        </activity>
     </application>
 
 </manifest>

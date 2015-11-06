@@ -7,19 +7,19 @@ import android.view.MenuItem;
 
 import itm.fhj.at.mensaapp.R;
 
-public class FavouriteMeals extends ListActivity {
+public class FavouriteMealsList extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favourite_meals);
+        setContentView(R.layout.activity_favourite_meals_list);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_favourte_meals, menu);
+        getMenuInflater().inflate(R.menu.menu_favourite_meals, menu);
         return true;
     }
 

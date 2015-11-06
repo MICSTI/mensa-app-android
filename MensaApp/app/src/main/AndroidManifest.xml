@@ -27,8 +27,8 @@
             android:label="@string/title_activity_mensa_detail" >
         </activity>
         <activity
-            android:name=".activity.FavouriteMeals"
-            android:label="@string/title_activity_favourite_meals" >
+            android:name=".activity.FavouriteMealsList"
+            android:label="@string/title_activity_favourite_meals_list" >
         </activity>
     </application>
 

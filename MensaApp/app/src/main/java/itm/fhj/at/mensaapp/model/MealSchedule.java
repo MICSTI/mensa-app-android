@@ -1,7 +1,7 @@
 package itm.fhj.at.mensaapp.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Created by michael.stifter on 04.11.2015.
@@ -10,10 +10,10 @@ public class MealSchedule {
     private Location location;
     private long timestamp;
 
-    private HashMap<String, ArrayList<Meal>> calendar;
+    private LinkedHashMap<String, ArrayList<Meal>> calendar;
 
     public MealSchedule() {
-        this.calendar = new HashMap<>();
+        this.calendar = new LinkedHashMap<>();
     }
 
     public Location getLocation() {
@@ -32,7 +32,7 @@ public class MealSchedule {
         this.timestamp = timestamp;
     }
 
-    public HashMap<String, ArrayList<Meal>> getCalendar() {
+    public LinkedHashMap<String, ArrayList<Meal>> getCalendar() {
         return calendar;
     }
 

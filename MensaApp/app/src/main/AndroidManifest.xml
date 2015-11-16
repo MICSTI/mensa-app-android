@@ -30,6 +30,12 @@
             android:name=".activity.FavouriteMealsList"
             android:label="@string/title_activity_favourite_meals_list" >
         </activity>
+
+        <service
+            android:name=".service.FavouriteMealService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>

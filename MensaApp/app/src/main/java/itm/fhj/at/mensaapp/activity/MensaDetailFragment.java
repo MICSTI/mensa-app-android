@@ -4,8 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -25,8 +32,13 @@ import itm.fhj.at.mensaapp.adapter.MealScheduleItem;
 import itm.fhj.at.mensaapp.model.Location;
 import itm.fhj.at.mensaapp.model.Meal;
 import itm.fhj.at.mensaapp.model.MealSchedule;
+import itm.fhj.at.mensaapp.util.Config;
 
-public class MensaDetail extends Activity {
+public class MensaDetailFragment extends Fragment {
+
+    private FragmentActivity fActivity;
+
+    private RelativeLayout rLayout;
 
     // mensa id
     private int mensaId;
@@ -38,16 +50,35 @@ public class MensaDetail extends Activity {
     private TextView txtMensaName;
     private ListView lstMealSchedule;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static MensaDetailFragment newInstance() {
+        MensaDetailFragment fragment = new MensaDetailFragment();
 
-        setContentView(R.layout.activity_mensa_detail);
+        Bundle args = new Bundle();
+
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    public MensaDetailFragment() {
+        // require empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        fActivity = (FragmentActivity) super.getActivity();
+
+        rLayout = (RelativeLayout) inflater.inflate(R.layout.activity_mensa_detail, container, false);
 
         // references to view elements
-        txtMensaId = (TextView) findViewById(R.id.txt_mensa_id);
-        txtMensaName = (TextView) findViewById(R.id.txt_mensa_name);
-        lstMealSchedule = (ListView) findViewById(R.id.list_meal_schedule);
+        txtMensaId = (TextView) rLayout.findViewById(R.id.txt_mensa_id);
+        txtMensaName = (TextView) rLayout.findViewById(R.id.txt_mensa_name);
+        lstMealSchedule = (ListView) rLayout.findViewById(R.id.list_meal_schedule);
 
         // get mensa id from intent extra
         //mensaId = (int)getIntent().getSerializableExtra("MENSA_ID");
@@ -56,7 +87,7 @@ public class MensaDetail extends Activity {
         mensaId = 50;
 
         // check shared preferences for a valid meal schedule
-        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences preferences = this.getContext().getSharedPreferences(Config.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
         // TODO remove fake JSON and implement real parsing
 
@@ -155,19 +186,24 @@ public class MensaDetail extends Activity {
                 }
             }
 
-            mealScheduleAdapter = new MealScheduleAdapter(this, items);
+            mealScheduleAdapter = new MealScheduleAdapter(getContext(), items);
             lstMealSchedule.setAdapter(mealScheduleAdapter);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        // we must return the loaded layout
+        return rLayout;
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_mensa_detail, menu);
-        return true;
+    public void onDetach() {
+        super.onDetach();
     }
 
     private MealSchedule parseMealScheduleJsonObject(JSONObject mealScheduleJson) {

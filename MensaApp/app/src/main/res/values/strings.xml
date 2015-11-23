@@ -9,4 +9,8 @@
     <string name="title_activity_mensa_detail">MensaDetail</string>
     <string name="title_activity_favourite_meals_list">FavouriteMealsList</string>
 
+    <string name="title_favourite_meals">Favourite Meals</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_meal_schedule">Meal Schedule</string>
+
 </resources>

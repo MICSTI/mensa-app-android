@@ -1,20 +1,14 @@
 package itm.fhj.at.mensaapp.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 import itm.fhj.at.mensaapp.R;
-import itm.fhj.at.mensaapp.activity.MensaDetail;
 
 /**
  * Created by michael.stifter on 04.11.2015.

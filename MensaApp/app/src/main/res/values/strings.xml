@@ -13,4 +13,6 @@
     <string name="title_locations">Locations</string>
     <string name="title_meal_schedule">Meal Schedule</string>
 
+    <string name="section_label">Placeholder Fragment</string>
+
 </resources>

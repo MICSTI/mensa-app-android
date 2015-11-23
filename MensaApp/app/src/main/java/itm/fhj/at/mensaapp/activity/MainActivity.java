@@ -1,17 +1,18 @@
 package itm.fhj.at.mensaapp.activity;
 
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.app.Activity;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,14 +21,6 @@ import android.view.ViewGroup;
 
 import org.jsoup.nodes.Document;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -42,21 +35,6 @@ import itm.fhj.at.mensaapp.model.Location;
 
 public class MainActivity extends Activity implements IParseCallback {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link android.support.v4.view.ViewPager} that will host the section contents.
-     */
-    ViewPager mViewPager;
-
     MensaDetailFragment mensaDetailFragment;
 
     private ArrayList<Location> retrievedLocations = new ArrayList<Location>();
@@ -66,20 +44,12 @@ public class MainActivity extends Activity implements IParseCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter();
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-
-        });
+        if (savedInstanceState == null) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragmentParentViewGroup, new PlaceholderFragment())
+                    .commit();
+        }
 
         // Load locations
         /*HTMLDataHandler dataHandler = new HTMLDataHandler();
@@ -123,52 +93,6 @@ public class MainActivity extends Activity implements IParseCallback {
         Intent i = new Intent(MainActivity.this, LocationsList.class);
         i.putExtra("LOCATIONS", this.retrievedLocations);
         startActivity(i);
-    }
-
-    /**
-     * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            //return PlaceholderFragment.newInstance(position + 1);
-
-            switch (position) {
-                case 0:
-                    return mensaDetailFragment;
-                default:
-                    return PlaceholderFragment.newInstance(0);
-            }
-
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            switch (position) {
-                case 0:
-                    return getString(R.string.title_meal_schedule).toUpperCase(l);
-                case 1:
-                    return getString(R.string.title_favourite_meals).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_locations).toUpperCase(l);
-            }
-            return null;
-        }
     }
 
     /**
